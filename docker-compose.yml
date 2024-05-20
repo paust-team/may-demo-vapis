@@ -1,0 +1,13 @@
+services:
+  follow-management:
+    build: ./follow-management/_core
+    volumes:
+      - type: bind
+        source: ./follow-management
+        target: /follow-management
+    ports:
+      - '8000:9000'
+    environment:
+      - VAPI_NAME=follow-management
+    env_file:
+      - .env.dev
