@@ -11,3 +11,15 @@ services:
       - VAPI_NAME=follow-management
     env_file:
       - .env.dev
+  user-management:
+    build: ./user-management/_core
+    volumes:
+      - type: bind
+        source: ./user-management
+        target: /user-management
+    ports:
+      - '8001:9000'
+    environment:
+      - VAPI_NAME=user-management
+    env_file:
+      - .env.dev
