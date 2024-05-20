@@ -35,3 +35,15 @@ services:
       - VAPI_NAME=matching-management
     env_file:
       - .env.dev
+  feed-management:
+    build: ./feed-management/_core
+    volumes:
+      - type: bind
+        source: ./feed-management
+        target: /feed-management
+    ports:
+      - '8003:9000'
+    environment:
+      - VAPI_NAME=feed-management
+    env_file:
+      - .env.dev
