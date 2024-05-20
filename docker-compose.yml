@@ -23,3 +23,15 @@ services:
       - VAPI_NAME=user-management
     env_file:
       - .env.dev
+  matching-management:
+    build: ./matching-management/_core
+    volumes:
+      - type: bind
+        source: ./matching-management
+        target: /matching-management
+    ports:
+      - '8002:9000'
+    environment:
+      - VAPI_NAME=matching-management
+    env_file:
+      - .env.dev
