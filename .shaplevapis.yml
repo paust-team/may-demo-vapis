@@ -1,13 +1,13 @@
 packages:
   user-management:
-    name: "user management"
+    name: "user-management"
     version: "0.1.0"
     gitUrl: "https://github.com/shaple/user-management"
     shortDescription: "User Management VAPI"
     longDescription: "This is a VAPI for managing membership information."
     access: "private"
   matching-management:
-    name: "matching management"
+    name: "matching-management"
     version: "1.1.0"
     gitUrl: "https://github.com/shaple/matching-management"
     shortDescription: "Matching Management VAPI"
@@ -17,7 +17,7 @@ packages:
       user-management:
         version: "0.1.0"
   follow-management:
-    name: "follow management"
+    name: "follow-management"
     version: "1.0.0"
     gitUrl: "https://github.com/shaple/follow-management"
     shortDescription: "Follow Management VAPI"
@@ -27,7 +27,7 @@ packages:
       user-management:
         version: "0.1.0"
   feed-management:
-    name: "feed management"
+    name: "feed-management"
     version: "1.2.0"
     gitUrl: "https://github.com/shaple/feed-management"
     shortDescription: "Feed Management VAPI"
