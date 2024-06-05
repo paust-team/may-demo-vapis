@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Matching Management
+  description: | 
+    VAPI to manage user matching relationships, including creation, retrieval, status updates, and deletion.
+  version: "1.0.0"
+
+paths:
+  /create-matching:
+    post:
+      summary: Create a new user match
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token required to authorize the request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                responder_id:
+                  type: string
+                  description: UUID of the user who responds to the match request
+      responses:
+        '200':
+          description: Match request processed successfully
+        '400':
+          description: Missing responder-id
+        '401':
+          description: Unauthorized
+        '405':
+          description: Method not allowed
+
+  /get-matching-list:
+    get:
+      summary: Retrieve a list of matches
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token required to authorize the request
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+            description: Page number for pagination
+        - in: query
+          name: page_size
+          schema:
+            type: integer
+            default: 10
+            description: Number of items per 
+      responses:
+        '200':
+          description: List of matches retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Match'
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+
+  /update-matching-status:
+    patch:
+      summary: Update the status of a match
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token required to authorize the request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                match_id:
+                  type: string
+                  description: ID of the match to update
+                status:
+                  type: boolean
+                  description: New status of the match, true for approved, false for cancelled
+      responses:
+        '200':
+          description: Match status updated successfully
+        '400':
+          description: Missing match-id or status
+        '401':
+          description: Unauthorized
+        '405':
+          description: Method not allowed
+
+  /update-user-matching-status:
+    patch:
+      summary: Update the matching status for a user
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token required to authorize the request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: boolean
+                  description: New matching status to set, true for active, false for inactive
+      responses:
+        '200':
+          description: User's matching status updated successfully
+        '400':
+          description: Missing status
+        '401':
+          description: Unauthorized
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    Match:
+      type: object
+      properties:
+        id:
+          type: string
+        requester_id:
+          type: string
+        responder_id:
+          type: string
+        status:
+          type: string
+          enum: [pending, approved, cancelled]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    UserMatchingStatus:
+      type: object
+      properties:
+        user_id:
+          type: string
+        matching_status:
+          type: string
+          enum: [active, inactive]
