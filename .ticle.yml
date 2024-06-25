@@ -1,0 +1,38 @@
+packages:
+  user-management:
+    name: "user-management"
+    version: "0.1.0"
+    gitUrl: "https://github.com/shaple/user-management"
+    shortDescription: "User Management VAPI"
+    longDescription: "VAPI for managing users. Provides the ability to view, edit, and unsubscribe users. This VAPI depends on the 'Auth BaseAPI'"
+    access: "public"
+  matching-management:
+    name: "matching-management"
+    version: "1.1.0"
+    gitUrl: "https://github.com/shaple/matching-management"
+    shortDescription: "Matching Management VAPI"
+    longDescription: "VAPI for managing matching between users. Matching can be enabled or disabled as True or False."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  follow-management:
+    name: "follow-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/follow-management"
+    shortDescription: "Follow Management VAPI"
+    longDescription: "VAPI for managing a user's followers. Users can follow other users to view each other's feeds."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  feed-management:
+    name: "feed-management"
+    version: "1.2.0"
+    gitUrl: "https://github.com/shaple/feed-management"
+    shortDescription: "Feed Management VAPI"
+    longDescription: "VAPI for managing feeds. A feed consists of title, content, file, created_date, and author."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
