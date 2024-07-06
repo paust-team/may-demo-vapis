@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Board Management
+  description: |
+    VAPI for managing boards.<br/>
+    Boards are categorized into some categories.
+  version: "0.3.0"
+
+paths:
+  /boards/{id}:
+    get:
+      summary: Retrieve Board information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Board ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardInfo'
+        '400':
+          description: Missing board-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update Board information
+      parameters:
+        - in: path
+          name: id
+          schema:
+              type: number
+          required: true
+          description: Board ID
+      requestBody:
+          required: true
+          content:
+              application/json:
+                  schema:
+                      $ref: '#/components/schemas/BoardInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing board-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Delete Board information
+      parameters:
+        - in: path
+          name: id
+          schema:
+              type: number
+          required: true
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing board-id
+        '405':
+          description: Method not allowed
+  /boards:
+    get:
+      summary: Retrieve all Boards
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BoardInfo'
+        '405':
+          description: Method not allowed
+    post:
+      summary: Create a new Board
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoardInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    BoardInfo:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        todos:
+          type: object
+          properties:
+            id:
+              type: number
+            name:
+              type: string
+            description:
+              type: string
+            due_date:
+              type: string
+            done:
+              type: boolean

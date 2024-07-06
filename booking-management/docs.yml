@@ -1,0 +1,163 @@
+openapi: 3.0.0
+info:
+  title: Booking management
+  description: |
+    VAPI for managing a user's bookings.<br/>
+    Users can request and modify bookings, and service providers can approve and cancel bookings.
+  version: "1.0.0"
+
+paths:
+  /bookings:
+    get:
+      summary: Retrieve all bookings
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+        '405':
+          description: Method not allowed
+    post:
+      summary: Create a booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '201':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '405':
+          description: Method not allowed
+  /bookings/{id}:
+    get:
+      summary: Retrieve a booking
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Booking ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '400':
+          description: Missing booking-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update a booking
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Booking ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing booking-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Delete a booking
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Booking ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing booking-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    Booking:
+      type: object
+      properties:
+        id:
+          type: number
+        user_id:
+          type: number
+        service_id:
+          type: number
+        status:
+          type: string
+          enum:
+            - requested
+            - approved
+            - canceled
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/User'
+        service:
+          $ref: '#/components/schemas/Service'
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Service:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time

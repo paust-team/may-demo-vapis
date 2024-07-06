@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Schedule Management
+  description: |
+    VAPI for managing service-specific schedules.<br/>
+    A schedule consists of date, time.
+  version: "1.0.0"
+
+paths:
+  /schedules:
+    get:
+      summary: Get all schedules
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schedules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ScheduleInfo'
+        '405':
+          description: Method not allowed
+    post:
+      summary: Add a schedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '405':
+          description: Method not allowed
+  /schedules/{id}:
+    get:
+      summary: Get a schedule
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Schedule ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleInfo'
+        '400':
+          description: Missing schedule-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update a schedule
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Schedule ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing schedule-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Delete a schedule
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Schedule ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing schedule-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    ScheduleInfo:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Schedule ID
+        title:
+          type: string
+          description: Title of the schedule
+        description:
+          type: string
+          description: Description of the schedule
+        begin_date:
+          type: string
+          format: date
+          description: Begin date of the schedule
+        end_date:
+          type: string
+          format: date
+          description: End date of the schedule

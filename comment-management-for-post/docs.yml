@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Comment Management for Post
+  description: |
+    VAPI for managing comments per post.<br/>
+    A comment consists of writer, content, and created_date.
+  version: "1.0.0"
+
+paths:
+  /posts{id}/comments:
+    post:
+      summary: Add a comment to a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+    get:
+      summary: Get comments of a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommentInfo'
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+  /posts/{id}/comments/{comment_id}:
+    delete:
+      summary: Delete a comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+        - in: path
+          name: comment_id
+          schema:
+            type: number
+          required: true
+          description: Comment ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing post-id or comment-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    CommentInfo:
+      type: object
+      properties:
+        writer:
+          type: string
+          description: Writer of the comment
+        content:
+          type: string
+          description: Content of the comment
+        created_date:
+          type: string
+          format: date-time
+          description: Date and time when the comment was created

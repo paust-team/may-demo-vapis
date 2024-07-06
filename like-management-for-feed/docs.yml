@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: Like Management for Feed
+  description: |
+    VAPI for managing likes per feed.<br/>
+    Users can rate feeds with likes.
+  version: "1.0.0"
+
+paths:
+  /feeds/{id}/likes:
+    post:
+      summary: Like a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Unlike a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+    get:
+      summary: Get likes of a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  likes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LikeInfo'
+  /feeds/{id}/likes/{like_id}:
+    delete:
+      summary: Unlike a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+        - in: path
+          name: like_id
+          schema:
+            type: number
+          required: true
+          description: Like ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id or like-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    LikeInfo:
+      type: object
+      properties:
+        id:
+          type: number
+        user_id:
+          type: number
+        feed_id:
+          type: number
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: number
+            username:
+              type: string
+            email:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+            deleted_at:
+              type: string
+        feed:
+          type: object
+          properties:
+            id:
+              type: number
+            title:
+              type: string
+            content:
+              type: string
+            file:
+              type: string
+            created_at:
+              type: string
+            author_id:
+              type: number
+            updated_at:
+              type: string
+            deleted_at:
+              type: string

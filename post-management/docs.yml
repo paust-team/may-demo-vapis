@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Post Management
+  description: |
+    VAPI for managing posts.<br/>
+    A post consists of a title, content, created_date, and writer.
+  version: "1.0.0"
+
+paths:
+  /posts/{id}:
+    get:
+      summary: Retrieve Post information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostInfo'
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update Post information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Delete Post information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+      responses:
+        '200':
+          description: Request processed successfully
+  /posts:
+    get:
+      summary: Retrieve all posts
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PostInfo'
+        '405':
+          description: Method not allowed
+    post:
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInfo'
+      responses:
+        '201':
+          description: Post created successfully
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    PostInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Post title
+        content:
+          type: string
+          description: Post content
+        created_at:
+          type: string
+          format: date-time
+          description: Post created date
+        writer:
+          type: string
+          description: Post writer

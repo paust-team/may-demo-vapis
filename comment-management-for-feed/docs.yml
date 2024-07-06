@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Comment Management for Feed
+  description: |
+    VAPI for managing comments per feed.<br/>
+    A comment consists of writer, content, and created_date.
+  version: "1.0.0"
+
+paths:
+  /feeds/{id}/comments:
+    post:
+      summary: Add a comment to a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+    get:
+      summary: Get comments of a feed
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommentInfo'
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+  /feeds/{id}/comments/{comment_id}:
+    delete:
+      summary: Delete a comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+        - in: path
+          name: comment_id
+          schema:
+            type: number
+          required: true
+          description: Comment ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update a comment
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Feed ID
+        - in: path
+          name: comment_id
+          schema:
+            type: number
+          required: true
+          description: Comment ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing feed-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    CommentInfo:
+      type: object
+      properties:
+        writer:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time

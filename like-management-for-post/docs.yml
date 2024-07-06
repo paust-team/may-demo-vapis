@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Like management for post
+  description: |
+    VAPI for managing likes per post.<br/>
+    Users can rate posts with likes.
+  version: "1.0.0"
+
+paths:
+  /posts/{id}/likes:
+    post:
+      summary: Like a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Unlike a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+    get:
+      summary: Get likes of a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Post ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  likes:
+                    type: number
+                    description: Number of likes
+        '400':
+          description: Missing post-id
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    PostInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Post title
+        content:
+          type: string
+          description: Post content
+        created_at:
+          type: string
+          format: date-time
+          description: Post created date
+        writer:
+          type: string
+          description: Post writer

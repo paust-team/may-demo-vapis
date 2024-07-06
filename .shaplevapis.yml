@@ -36,3 +36,102 @@ packages:
     dependencies:
       user-management:
         version: "0.1.0"
+  task-management:
+    name: "task-management"
+    version: "0.5.6"
+    gitUrl: "https://github.com/shaple/task-management"
+    shortDescription: "Task Management VAPI"
+    longDescription: "VAPI for managing to-dos. A to-do consists of a title, content, due_date, and completed."
+    access: "public"
+  board-management:
+    name: "board-management"
+    version: "0.3.0"
+    gitUrl: "https://github.com/shaple/board-management"
+    shortDescription: "Board Management VAPI"
+    longDescription: "VAPI for managing boards. Boards are categorized into categories."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  post-management:
+    name: "post-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/post-management"
+    shortDescription: "Post Management VAPI"
+    longDescription: "VAPI for managing posts. A post consists of a title, content, created_date, and writer."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      board-management:
+        version: "0.3.0"
+  like-management-for-post:
+    name: "like-management-for-post"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/like-management-for-post"
+    shortDescription: "Like Management for Post VAPI"
+    longDescription: "VAPI for managing likes per post. Users can rate posts with likes."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      post-management:
+        version: "1.0.0"
+  comment-management-for-post:
+    name: "comment-management-for-post"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/comment-management-for-post"
+    shortDescription: "Comment Management for Post VAPI"
+    longDescription: "VAPI for managing comments per post. A comment consists of writer, content, and created_date."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      post-management:
+        version: "1.0.0"
+  booking-management:
+    name: "booking-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/booking-management"
+    shortDescription: "Booking Management VAPI"
+    longDescription: "VAPI for managing a user's bookings. Users can request and modify bookings, and service providers can approve and cancel bookings."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      schedule-management:
+        version: "1.0.0"
+  schedule-management:
+    name: "schedule-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/schedule-management"
+    shortDescription: "Schedule Management VAPI"
+    longDescription: "VAPI for managing service-specific schedules. A schedule consists of date, time."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  like-management-for-feed:
+    name: "like-management-for-feed"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/like-management-for-feed"
+    shortDescription: "Like Management for Feed VAPI"
+    longDescription: "VAPI for managing likes per feed. Users can rate feeds with likes."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      feed-management:
+        version: "1.2.0"
+  comment-management-for-feed:
+    name: "comment-management-for-feed"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/comment-management-for-feed"
+    shortDescription: "Comment Management for Feed VAPI"
+    longDescription: "VAPI for managing comments per feed. A comment consists of writer, content, and created_date."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      feed-management:
+        version: "1.2.0"

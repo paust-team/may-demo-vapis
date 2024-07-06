@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  title: Task Management
+  description: |
+    VAPI for managing to-dos.
+    A to-do consists of a title, content, due_date, and completed.
+  version: "0.5.6"
+
+paths:
+  /tasks/{id}:
+    get:
+      summary: Retrieve Todo information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+          required: true
+          description: Task ID
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInfo'
+        '400':
+          description: Missing task-id
+        '405':
+          description: Method not allowed
+    put:
+      summary: Update Todo information
+      parameters:
+        - in: path
+          name: id
+          schema:
+              type: number
+          required: true
+          description: Task ID
+      requestBody:
+          required: true
+          content:
+              application/json:
+                  schema:
+                      $ref: '#/components/schemas/TaskInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing task-id
+        '405':
+          description: Method not allowed
+    delete:
+      summary: Delete Todo information
+      parameters:
+        - in: path
+          name: id
+          schema:
+              type: number
+          required: true
+          description: Task ID
+      responses:
+        '200':
+          description: Request processed successfully
+        '400':
+          description: Missing task-id
+        '405':
+          description: Method not allowed
+  /tasks:
+    get:
+      summary: Retrieve all Todos
+      responses:
+        '200':
+          description: Request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskInfo'
+        '405':
+          description: Method not allowed
+    post:
+      summary: Create a new Todo
+      requestBody:
+          required: true
+          content:
+              application/json:
+                  schema:
+                      $ref: '#/components/schemas/TaskInfo'
+      responses:
+        '200':
+          description: Request processed successfully
+        '405':
+          description: Method not allowed
+
+components:
+  schemas:
+    TaskInfo:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        done:
+          type: boolean
+        due_date:
+          type: string
