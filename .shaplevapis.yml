@@ -135,3 +135,239 @@ packages:
         version: "0.1.0"
       feed-management:
         version: "1.2.0"
+  store-management:
+    name: "store-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/store-management"
+    shortDescription: "Store Management VAPI"
+    longDescription: "VAPI for managing stores. Handle store-related tasks, such as adding, editing, and deleting stores."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  product-management:
+    name: "product-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/product-management"
+    shortDescription: "Product Management VAPI"
+    longDescription: "VAPI for managing products. Handle product-related operations, such as adding, editing, and deleting products."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      store-management:
+        version: "1.0.0"
+  order-management:
+    name: "order-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/order-management"
+    shortDescription: "Order Management VAPI"
+    longDescription: "VAPI for managing orders. Handles operations related to orders, such as creating, searching, updating, and canceling orders."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      product-management:
+        version: "1.0.0"
+      store-management:
+        version: "1.0.0"
+  cart-management:
+    name: "cart-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/cart-management"
+    shortDescription: "Cart Management VAPI"
+    longDescription: "VAPI for managing shopping carts. Handles operations related to adding, deleting, and modifying items in the cart."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      product-management:
+        version: "1.0.0"
+      store-management:
+        version: "1.0.0"
+  review-management:
+    name: "review-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/review-management"
+    shortDescription: "Review Management VAPI"
+    longDescription: "VAPI for managing product reviews. Handles operations related to adding, editing, and deleting product reviews."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      product-management:
+        version: "1.0.0"
+      store-management:
+        version: "1.0.0"
+      order-management:
+        version: "1.0.0"
+  chat-room-management:
+    name: "chat-room-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/chat-room-management"
+    shortDescription: "Chat Room Management VAPI"
+    longDescription: "VAPI for managing chat rooms. Handles operations related to creating, updating, and deleting chat rooms."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  messages-management:
+    name: "messages-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/messages-management"
+    shortDescription: "Messages Management VAPI"
+    longDescription: "VAPI for managing messages. Handles operations related to sending, viewing, and deleting messages."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      chat-room-management:
+        version: "1.0.0"
+  article-management:
+    name: "article-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/article-management"
+    shortDescription: "Article Management VAPI"
+    longDescription: "VAPI for managing articles. Handles operations related to adding, editing, and deleting articles."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      subscription-management:
+        version: "1.0.0"
+  subscription-management:
+    name: "subscription-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/subscription-management"
+    shortDescription: "Subscription Management VAPI"
+    longDescription: "VAPI for managing subscriptions. Handles functions related to subscribing, unsubscribing, and viewing subscription status."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  comment-management-for-article:
+    name: "comment-management-for-article"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/comment-management-for-article"
+    shortDescription: "Comment Management for Article VAPI"
+    longDescription: "VAPI for managing comments per article. A comment consists of author, article, and created_date."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      article-management:
+        version: "1.0.0"
+  like-management-for-article:
+    name: "like-management-for-article"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/like-management-for-article"
+    shortDescription: "Like Management for Article VAPI"
+    longDescription: "VAPI for managing likes per article. Users can rate articles with likes."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      article-management:
+        version: "1.0.0"
+  bookmark-management-for-article:
+    name: "bookmark-management-for-article"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/bookmark-management-for-article"
+    shortDescription: "Bookmark Management for Article VAPI"
+    longDescription: "VAPI for managing bookmarks per article. Users can bookmark and save articles."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      article-management:
+        version: "1.0.0"
+  campaign-management:
+    name: "campaign-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/campaign-management"
+    shortDescription: "Campaign Management VAPI"
+    longDescription: "VAPI for managing campaigns. Handles functions related to creating, editing, and deleting campaigns."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  targeting-management:
+    name: "targeting-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/targeting-management"
+    shortDescription: "Targeting Management VAPI"
+    longDescription: "VAPI for managing audiences. Handles functions related to registering, editing, and deleting audience members."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  restaurant-management:
+    name: "restaurant-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/restaurant-management"
+    shortDescription: "Restaurant Management VAPI"
+    longDescription: "VAPI for restaurant management. Handles functions related to registering, editing, and deleting restaurants."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  menu-management:
+    name: "menu-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/menu-management"
+    shortDescription: "Menu Management VAPI"
+    longDescription: "VAPI for managing menus. It handles functions related to registering, modifying, and deleting menus."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      restaurant-management:
+        version: "1.0.0"
+  order-management-for-delivery:
+    name: "order-management-for-delivery"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/order-management-for-delivery"
+    shortDescription: "Order Management for Delivery VAPI"
+    longDescription: "VAPI for managing delivery orders. Handles functions related to creating, modifying, and deleting delivery orders."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      restaurant-management:
+        version: "1.0.0"
+      menu-management:
+        version: "1.0.0"
+  rider-management:
+    name: "rider-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/rider-management"
+    shortDescription: "Rider Management VAPI"
+    longDescription: "VAPI for managing riders. Handles functions related to registering, modifying, and deleting riders."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+  dispatch-management:
+    name: "dispatch-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/dispatch-management"
+    shortDescription: "Dispatch Management VAPI"
+    longDescription: "VAPI for dispatch management. It handles functions related to requesting, accepting, and rejecting dispatch."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
+      rider-management:
+        version: "1.0.0"
+      restaurant-management:
+        version: "1.0.0"
+  notifications-management:
+    name: "notifications-management"
+    version: "1.0.0"
+    gitUrl: "https://github.com/shaple/notifications-management"
+    shortDescription: "Notifications Management VAPI"
+    longDescription: "VAPI for managing alert lists. Handles functions related to alert list lookup, status updates, and more."
+    access: "public"
+    dependencies:
+      user-management:
+        version: "0.1.0"
